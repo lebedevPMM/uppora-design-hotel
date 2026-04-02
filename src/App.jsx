@@ -102,10 +102,10 @@ function Calculator() {
 /* ─── Hero Card Stack ─── */
 function HeroCards() {
   return (
-    <div className="relative w-full flex flex-col lg:block lg:h-[620px] max-w-4xl mx-auto" id="section-0">
+    <div className="relative w-full flex flex-col lg:block lg:h-[700px] max-w-4xl mx-auto mb-8" id="section-0">
       {/* Card 3: Receipt / Finances — back */}
       <PaperCard bg="var(--color-warm-gray)" rotate="3deg"
-        className="relative lg:absolute lg:top-4 lg:right-0 w-full lg:w-[380px] h-auto lg:h-[560px] z-10 transition-transform duration-500 hover:rotate-[2deg]">
+        className="relative lg:absolute lg:top-8 lg:right-0 w-full lg:w-[360px] h-auto lg:h-[500px] z-10 transition-transform duration-500 hover:rotate-[2deg]">
         <div className="absolute left-3 top-0 bottom-0 flex items-center border-r border-black/10 pr-2">
           <span className="text-vertical font-typewriter text-[9px] tracking-widest uppercase opacity-50">uppora.org • альфа • 2026</span>
         </div>
@@ -136,7 +136,7 @@ function HeroCards() {
 
       {/* Card 2: How it works — middle */}
       <PaperCard bg="var(--color-navy)" rotate="-2deg"
-        className="relative lg:absolute lg:top-2 lg:left-20 w-full lg:w-[360px] h-auto lg:h-[540px] z-20 text-[var(--color-paper)] -mt-16 lg:mt-0 transition-transform duration-500 hover:rotate-[-1deg]">
+        className="relative lg:absolute lg:top-4 lg:left-24 w-full lg:w-[350px] h-auto lg:h-[520px] z-20 text-[var(--color-paper)] -mt-16 lg:mt-0 transition-transform duration-500 hover:rotate-[-1deg]">
         <div className="p-8 h-full flex flex-col relative overflow-hidden">
           <div className="absolute -left-10 top-20 w-40 h-40 rounded-full border border-[var(--color-gold)]/25 spin-slow flex items-center justify-center">
             <svg className="w-full h-full" viewBox="0 0 100 100">
@@ -172,7 +172,7 @@ function HeroCards() {
 
       {/* Card 1: Main key card — front */}
       <PaperCard bg="var(--color-emerald)" rotate="0deg"
-        className="relative lg:absolute lg:top-10 lg:left-0 w-full lg:w-[400px] h-auto lg:h-[520px] z-30 shadow-2xl -mt-16 lg:mt-0 transition-all hover:-translate-y-1">
+        className="relative lg:absolute lg:top-20 lg:left-0 w-full lg:w-[400px] h-auto lg:h-[580px] z-30 shadow-2xl -mt-16 lg:mt-0 transition-all hover:-translate-y-1">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-28 h-14 bg-[var(--color-paper)] rounded-b-full shadow-inner z-40" />
         <div className="p-8 lg:p-10 h-full flex flex-col relative text-[var(--color-paper)]">
           <div className="flex flex-col mt-6">
