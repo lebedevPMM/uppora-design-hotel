@@ -102,102 +102,147 @@ function Calculator() {
 /* ─── Hero Card Stack ─── */
 function HeroCards() {
   return (
-    <div className="relative w-full flex flex-col lg:block lg:h-[700px] max-w-4xl mx-auto mb-8" id="section-0">
-      {/* Card 3: Receipt / Finances — back */}
-      <PaperCard bg="var(--color-warm-gray)" rotate="3deg"
-        className="relative lg:absolute lg:top-8 lg:right-0 w-full lg:w-[360px] h-auto lg:h-[500px] z-10 transition-transform duration-500 hover:rotate-[2deg]">
-        <div className="absolute left-3 top-0 bottom-0 flex items-center border-r border-black/10 pr-2">
-          <span className="text-vertical font-typewriter text-[9px] tracking-widest uppercase opacity-50">uppora.org • альфа • 2026</span>
-        </div>
-        <div className="pl-10 pt-10 pr-6 pb-6 flex flex-col h-full">
-          <div className="absolute top-6 right-6 w-20 h-20 border border-black/15 rounded-full flex items-center justify-center -rotate-12">
-            <div className="w-16 h-16 border border-dashed border-black/20 rounded-full flex items-center justify-center">
-              <span className="font-typewriter text-[9px] text-center leading-tight opacity-60">ОТКРЫТАЯ<br />БУХГАЛ-<br />ТЕРИЯ</span>
+    <div id="section-0">
+      {/* Desktop: 3 cards side by side with overlap via negative margins */}
+      <div className="hidden lg:flex items-start justify-center -space-x-16 mb-16">
+        {/* Card 1: Main key card — front (leftmost, highest z) */}
+        <PaperCard bg="var(--color-emerald)" rotate="0deg"
+          className="w-[380px] shrink-0 z-30 shadow-2xl mt-8 transition-all hover:-translate-y-1">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-28 h-14 bg-[var(--color-paper)] rounded-b-full shadow-inner z-40" />
+          <div className="p-8 flex flex-col relative text-[var(--color-paper)]">
+            <div className="flex flex-col mt-6">
+              <span className="font-serif text-5xl leading-none tracking-tight text-[var(--color-gold)]">Комиссия</span>
+              <span className="font-serif text-5xl leading-none italic text-[var(--color-gold)] pl-4">всего 4,5%</span>
+            </div>
+            <div className="mt-6"><Calculator /></div>
+            <div className="flex justify-between items-end mt-6">
+              <div className="relative w-24 h-20 flex items-center justify-center -rotate-6">
+                <svg className="absolute w-full h-full text-[var(--color-gold)]" viewBox="0 0 100 100" fill="none">
+                  <path d="M50 5 L95 90 L5 90 Z" stroke="currentColor" strokeWidth="1.5" strokeDasharray="2 1" strokeLinejoin="round" />
+                </svg>
+                <div className="relative z-10 text-center pt-3">
+                  <span className="block font-sans-modern text-[8px] uppercase tracking-wider mb-0.5">Alpha</span>
+                  <span className="block font-typewriter text-xl font-bold text-[var(--color-gold)]">2026</span>
+                </div>
+              </div>
+              <a href="#section-4" className="group w-12 h-12 rounded-full bg-[var(--color-gold)] text-[var(--color-emerald)] flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+              </a>
             </div>
           </div>
-          <div className="mt-auto space-y-4">
-            <div className="border-b border-black/10 pb-3">
-              <Label>Каждый донат в 1 000 ₽</Label>
-              <div className="font-typewriter text-sm mt-2 space-y-1">
-                <div className="flex justify-between"><span className="opacity-60">Автору</span><span className="text-[var(--color-emerald)] font-bold text-lg font-serif">955 ₽</span></div>
-                <div className="flex justify-between"><span className="opacity-60">Банку</span><span>30 ₽</span></div>
-                <div className="flex justify-between"><span className="opacity-60">Uppora</span><span>15 ₽</span></div>
+        </PaperCard>
+
+        {/* Card 2: How it works — middle */}
+        <PaperCard bg="var(--color-navy)" rotate="-2deg"
+          className="w-[340px] shrink-0 z-20 text-[var(--color-paper)] transition-transform duration-500 hover:rotate-[-1deg]">
+          <div className="p-7 flex flex-col relative overflow-hidden min-h-[480px]">
+            <div className="absolute -left-10 top-16 w-36 h-36 rounded-full border border-[var(--color-gold)]/25 spin-slow flex items-center justify-center">
+              <svg className="w-full h-full" viewBox="0 0 100 100">
+                <path id="cp" d="M 50,50 m -38,0 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0" fill="none" />
+                <text className="fill-[var(--color-gold)] text-[5.5px] font-typewriter uppercase tracking-[0.25em]">
+                  <textPath href="#cp">QR-донаты • Без регистрации • Комиссия 4,5% • </textPath>
+                </text>
+              </svg>
+            </div>
+            <div className="mt-auto z-10 space-y-5">
+              <h3 className="font-serif text-2xl italic text-[var(--color-gold)]">Три простых шага</h3>
+              {[
+                { n: '1', title: 'Мы создаём страницу', desc: 'Только имя и карта. Без паспорта. 2 минуты.' },
+                { n: '2', title: 'Делитесь ссылкой или QR', desc: 'В био, на столе в кофейне, на витрине.' },
+                { n: '3', title: 'Деньги на карте', desc: 'QR → сумма → готово. Вывод в тот же день.' },
+              ].map(s => (
+                <div key={s.n} className="flex gap-3 items-start">
+                  <div className="w-6 h-6 rounded-full border border-[var(--color-gold)]/50 flex items-center justify-center shrink-0">
+                    <span className="font-typewriter text-[10px] text-[var(--color-gold)]">{s.n}</span>
+                  </div>
+                  <div>
+                    <div className="font-serif text-base">{s.title}</div>
+                    <div className="font-typewriter text-[10px] opacity-70 leading-relaxed">{s.desc}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="absolute right-2 top-0 bottom-0 flex items-center">
+              <span className="text-vertical font-typewriter text-[7px] tracking-[0.2em] uppercase opacity-40">Платёжный партнёр — Т-Банк</span>
+            </div>
+          </div>
+        </PaperCard>
+
+        {/* Card 3: Receipt / Finances — back */}
+        <PaperCard bg="var(--color-warm-gray)" rotate="3deg"
+          className="w-[320px] shrink-0 z-10 mt-4 transition-transform duration-500 hover:rotate-[2deg]">
+          <div className="absolute left-3 top-0 bottom-0 flex items-center border-r border-black/10 pr-2">
+            <span className="text-vertical font-typewriter text-[8px] tracking-widest uppercase opacity-50">uppora.org • альфа • 2026</span>
+          </div>
+          <div className="pl-10 pt-8 pr-6 pb-5 flex flex-col">
+            <div className="absolute top-5 right-5 w-16 h-16 border border-black/15 rounded-full flex items-center justify-center -rotate-12">
+              <div className="w-12 h-12 border border-dashed border-black/20 rounded-full flex items-center justify-center">
+                <span className="font-typewriter text-[7px] text-center leading-tight opacity-60">ОТКРЫТАЯ<br />БУХГАЛ-<br />ТЕРИЯ</span>
               </div>
             </div>
-            <p className="font-serif text-base italic leading-relaxed opacity-80">
-              «Мы зарабатываем <strong className="text-[var(--color-emerald)] not-italic">15 ₽</strong> с каждой тысячи. Не берём подписку. 15 рублей — наш единственный доход.»
-            </p>
+            <div className="mt-24 space-y-3">
+              <div className="border-b border-black/10 pb-2">
+                <Label>Каждый донат в 1 000 ₽</Label>
+                <div className="font-typewriter text-sm mt-2 space-y-1">
+                  <div className="flex justify-between"><span className="opacity-60">Автору</span><span className="text-[var(--color-emerald)] font-bold text-lg font-serif">955 ₽</span></div>
+                  <div className="flex justify-between"><span className="opacity-60">Банку</span><span>30 ₽</span></div>
+                  <div className="flex justify-between"><span className="opacity-60">Uppora</span><span>15 ₽</span></div>
+                </div>
+              </div>
+              <p className="font-serif text-sm italic leading-relaxed opacity-80">
+                «Мы зарабатываем <strong className="text-[var(--color-emerald)] not-italic">15 ₽</strong> с каждой тысячи. 15 рублей — наш единственный доход.»
+              </p>
+            </div>
+            <div className="mt-3 border-t-2 border-dashed border-black/10 pt-2">
+              <span className="font-typewriter text-[7px] uppercase tracking-wider">Открытая бухгалтерия</span>
+            </div>
           </div>
-          <div className="mt-4 border-t-2 border-dashed border-black/10 pt-2 flex justify-between items-center">
-            <span className="font-typewriter text-[8px] uppercase tracking-wider">Открытая бухгалтерия</span>
-          </div>
-        </div>
-      </PaperCard>
+        </PaperCard>
+      </div>
 
-      {/* Card 2: How it works — middle */}
-      <PaperCard bg="var(--color-navy)" rotate="-2deg"
-        className="relative lg:absolute lg:top-4 lg:left-24 w-full lg:w-[350px] h-auto lg:h-[520px] z-20 text-[var(--color-paper)] -mt-16 lg:mt-0 transition-transform duration-500 hover:rotate-[-1deg]">
-        <div className="p-8 h-full flex flex-col relative overflow-hidden">
-          <div className="absolute -left-10 top-20 w-40 h-40 rounded-full border border-[var(--color-gold)]/25 spin-slow flex items-center justify-center">
-            <svg className="w-full h-full" viewBox="0 0 100 100">
-              <path id="cp" d="M 50,50 m -38,0 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0" fill="none" />
-              <text className="fill-[var(--color-gold)] text-[5.5px] font-typewriter uppercase tracking-[0.25em]">
-                <textPath href="#cp">QR-донаты • Без регистрации • Комиссия 4,5% • </textPath>
-              </text>
-            </svg>
+      {/* Mobile: stacked vertically */}
+      <div className="flex flex-col gap-6 lg:hidden mb-12">
+        <PaperCard bg="var(--color-emerald)" className="p-6 text-[var(--color-paper)]">
+          <div className="relative z-10">
+            <div className="flex flex-col mb-4">
+              <span className="font-serif text-4xl leading-none tracking-tight text-[var(--color-gold)]">Комиссия</span>
+              <span className="font-serif text-4xl leading-none italic text-[var(--color-gold)] pl-3">всего 4,5%</span>
+            </div>
+            <Calculator />
           </div>
-          <div className="mt-auto mb-8 z-10 space-y-6">
-            <h3 className="font-serif text-3xl italic text-[var(--color-gold)]">Три простых шага</h3>
+        </PaperCard>
+        <PaperCard bg="var(--color-navy)" className="p-6 text-[var(--color-paper)]">
+          <div className="relative z-10 space-y-4">
+            <h3 className="font-serif text-2xl italic text-[var(--color-gold)]">Три простых шага</h3>
             {[
               { n: '1', title: 'Мы создаём страницу', desc: 'Только имя и карта. Без паспорта. 2 минуты.' },
               { n: '2', title: 'Делитесь ссылкой или QR', desc: 'В био, на столе в кофейне, на витрине.' },
               { n: '3', title: 'Деньги на карте', desc: 'QR → сумма → готово. Вывод в тот же день.' },
             ].map(s => (
               <div key={s.n} className="flex gap-3 items-start">
-                <div className="w-7 h-7 rounded-full border border-[var(--color-gold)]/50 flex items-center justify-center shrink-0">
-                  <span className="font-typewriter text-xs text-[var(--color-gold)]">{s.n}</span>
+                <div className="w-6 h-6 rounded-full border border-[var(--color-gold)]/50 flex items-center justify-center shrink-0">
+                  <span className="font-typewriter text-[10px] text-[var(--color-gold)]">{s.n}</span>
                 </div>
                 <div>
-                  <div className="font-serif text-lg">{s.title}</div>
-                  <div className="font-typewriter text-[11px] opacity-70 leading-relaxed">{s.desc}</div>
+                  <div className="font-serif text-base">{s.title}</div>
+                  <div className="font-typewriter text-[10px] opacity-70">{s.desc}</div>
                 </div>
               </div>
             ))}
           </div>
-          <div className="absolute right-3 top-0 bottom-0 flex items-center">
-            <span className="text-vertical font-typewriter text-[8px] tracking-[0.2em] uppercase opacity-40">Платёжный партнёр — Т-Банк</span>
-          </div>
-        </div>
-      </PaperCard>
-
-      {/* Card 1: Main key card — front */}
-      <PaperCard bg="var(--color-emerald)" rotate="0deg"
-        className="relative lg:absolute lg:top-20 lg:left-0 w-full lg:w-[400px] h-auto lg:h-[580px] z-30 shadow-2xl -mt-16 lg:mt-0 transition-all hover:-translate-y-1">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-28 h-14 bg-[var(--color-paper)] rounded-b-full shadow-inner z-40" />
-        <div className="p-8 lg:p-10 h-full flex flex-col relative text-[var(--color-paper)]">
-          <div className="flex flex-col mt-6">
-            <span className="font-serif text-5xl lg:text-6xl leading-none tracking-tight text-[var(--color-gold)]">Комиссия</span>
-            <span className="font-serif text-5xl lg:text-6xl leading-none italic text-[var(--color-gold)] pl-4">всего 4,5%</span>
-          </div>
-          <div className="mt-8">
-            <Calculator />
-          </div>
-          <div className="flex justify-between items-end mt-auto pt-6">
-            <div className="relative w-28 h-24 flex items-center justify-center -rotate-6">
-              <svg className="absolute w-full h-full text-[var(--color-gold)]" viewBox="0 0 100 100" fill="none">
-                <path d="M50 5 L95 90 L5 90 Z" stroke="currentColor" strokeWidth="1.5" strokeDasharray="2 1" strokeLinejoin="round" />
-              </svg>
-              <div className="relative z-10 text-center pt-4">
-                <span className="block font-sans-modern text-[9px] uppercase tracking-wider mb-0.5">Alpha</span>
-                <span className="block font-typewriter text-2xl font-bold text-[var(--color-gold)]">2026</span>
-              </div>
+        </PaperCard>
+        <PaperCard bg="var(--color-warm-gray)" className="p-6">
+          <div className="relative z-10 space-y-3">
+            <Label>Открытая бухгалтерия — каждый донат в 1 000 ₽</Label>
+            <div className="font-typewriter text-sm space-y-1">
+              <div className="flex justify-between"><span className="opacity-60">Автору</span><span className="text-[var(--color-emerald)] font-bold text-lg font-serif">955 ₽</span></div>
+              <div className="flex justify-between"><span className="opacity-60">Банку</span><span>30 ₽</span></div>
+              <div className="flex justify-between"><span className="opacity-60">Uppora</span><span>15 ₽</span></div>
             </div>
-            <a href="#section-4" className="group w-14 h-14 rounded-full bg-[var(--color-gold)] text-[var(--color-emerald)] flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
-            </a>
+            <p className="font-serif text-sm italic opacity-80">«15 рублей — наш единственный доход.»</p>
           </div>
-        </div>
-      </PaperCard>
+        </PaperCard>
+      </div>
     </div>
   )
 }
